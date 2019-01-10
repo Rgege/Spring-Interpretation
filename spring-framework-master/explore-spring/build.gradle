@@ -3,8 +3,18 @@ version '5.1.4.BUILD-SNAPSHOT'
 
 apply plugin: 'java'
 
-sourceCompatibility = 1.8
+compileJava {
+    sourceCompatibility = 1.8  // can be switched to 11 for testing
+    targetCompatibility = 1.8
+    options.encoding = "UTF-8"
+}
 
+compileTestJava {
+    sourceCompatibility = 1.8  // can be switched to 11 for testing
+    targetCompatibility = 1.8
+    options.encoding = "UTF-8"
+    options.compilerArgs += "-parameters"
+}
 repositories {
     mavenCentral()
 }
@@ -22,7 +32,7 @@ dependencies {
     compile(project(":spring-orm"))
     compile(project(":spring-oxm"))
     compile(project(":spring-web"))
-    compile(project(":spring-webflux"))
+//    compile(project(":spring-webflux"))
     compile(project(":spring-webmvc"))
     compile(project(":spring-websocket"))
     testCompile group: 'junit', name: 'junit', version: '4.12'
