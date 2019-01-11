@@ -21,6 +21,7 @@ classes/
 /build
 buildSrc/build
 /spring-*/build
+/explore-spring/build
 /src/asciidoc/build
 target/
 
