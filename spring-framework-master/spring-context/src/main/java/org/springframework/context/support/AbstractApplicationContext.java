@@ -83,18 +83,24 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.util.ReflectionUtils;
 
 /**
+ * {@link org.springframework.context.ApplicationContext}接口的抽象实现。
+ * 不要求配置使用的存储类型;只实现公共上下文功能。使用模板方法设计模式，需要具体的子类来实现抽象方法。
  * Abstract implementation of the {@link org.springframework.context.ApplicationContext}
  * interface. Doesn't mandate the type of storage used for configuration; simply
  * implements common context functionality. Uses the Template Method design pattern,
  * requiring concrete subclasses to implement abstract methods.
- *
+ * 与普通bean工厂不同，ApplicationContext应该检测在其内部bean工厂中定义的特殊bean:
  * <p>In contrast to a plain BeanFactory, an ApplicationContext is supposed
  * to detect special beans defined in its internal bean factory:
+ * 因此 这个类会自动注册以下这些作为bean定义在上下文中的类
  * Therefore, this class automatically registers
  * {@link org.springframework.beans.factory.config.BeanFactoryPostProcessor BeanFactoryPostProcessors},
  * {@link org.springframework.beans.factory.config.BeanPostProcessor BeanPostProcessors}
  * and {@link org.springframework.context.ApplicationListener ApplicationListeners}
  * which are defined as beans in the context.
+ * 还可以在上下文中以bean的形式提供MessageSource，其名称为“MessageSource”;否则，将消息解析委托给父
+ * 上下文。此外，应用程序事件的多播器可以作为org.springframe.context.event类型的“applicationEventMulticaster”
+ * bean提供。否则，将使用默认类型org.springframework.context.event.SimpleApplicationEventMulticaster。
  *
  * <p>A {@link org.springframework.context.MessageSource} may also be supplied
  * as a bean in the context, with the name "messageSource"; otherwise, message
