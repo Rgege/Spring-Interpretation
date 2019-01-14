@@ -74,7 +74,8 @@ final class PostProcessorRegistrationDelegate {
 					regularPostProcessors.add(postProcessor);
 				}
 			}
-
+			//不要在这里初始化factorybean:我们需要不初始化所有常规bean，以便让bean工厂后处理器应用于它们!
+			// 在beandefinitionregistrypostprocessor(实现PriorityOrdered、Ordered)和其他处理器之间进行分离。
 			// Do not initialize FactoryBeans here: We need to leave all regular beans
 			// uninitialized to let the bean factory post-processors apply to them!
 			// Separate between BeanDefinitionRegistryPostProcessors that implement
@@ -108,6 +109,7 @@ final class PostProcessorRegistrationDelegate {
 			invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
 			currentRegistryProcessors.clear();
 
+			//最后，调用所有其他beandefinitionregistrypostprocessor，直到不再出现其他处理器为止。
 			// Finally, invoke all other BeanDefinitionRegistryPostProcessors until no further ones appear.
 			boolean reiterate = true;
 			while (reiterate) {

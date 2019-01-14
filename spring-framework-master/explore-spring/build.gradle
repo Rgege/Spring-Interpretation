@@ -2,16 +2,11 @@ group 'org.springframework'
 version '5.1.4.BUILD-SNAPSHOT'
 
 apply plugin: 'java'
-
-compileJava {
-    sourceCompatibility = 1.8  // can be switched to 11 for testing
-    targetCompatibility = 1.8
-    options.encoding = "UTF-8"
-}
-doFirst {
-    classpath = files(
-            project(":spring-aspects").sourceSets.main.output
-    )
+configurations {
+    rt
+    ajc
+    aspects
+    ajInpath
 }
 compileTestJava {
     sourceCompatibility = 1.8  // can be switched to 11 for testing
@@ -22,11 +17,17 @@ compileTestJava {
 repositories {
     mavenCentral()
 }
-
+//doFirst {
+//    classpath = files(
+//            project(":spring-aspects").sourceSets.main.output
+//    )
+//}
 dependencies {
     compile(project(":spring-beans"))
     compile(project(":spring-aop"))
-    compile(project(":spring-aspects"))
+// https://mvnrepository.com/artifact/org.springframework/spring-aspects
+    compile group: 'org.springframework', name: 'spring-aspects', version: '5.1.4.RELEASE'
+//    compile(project(":spring-aspects"))
     compile(project(":spring-context"))
     compile(project(":spring-core"))
     compile(project(":spring-jdbc"))
@@ -36,12 +37,12 @@ dependencies {
     compile(project(":spring-orm"))
     compile(project(":spring-oxm"))
     compile(project(":spring-web"))
-    compile(project(":spring-webflux"))
+//    compile(project(":spring-webflux"))
     compile(project(":spring-webmvc"))
     compile(project(":spring-websocket"))
     ajc("org.aspectj:aspectjtools:${aspectjVersion}")
     rt("org.aspectj:aspectjrt:${aspectjVersion}")
     compile("org.aspectj:aspectjweaver:${aspectjVersion}")
     testCompile group: 'junit', name: 'junit', version: '4.12'
-//    testCompile("org.aspectj:aspectjweaver:${aspectjVersion}")
+    testCompile("org.aspectj:aspectjweaver:${aspectjVersion}")
 }

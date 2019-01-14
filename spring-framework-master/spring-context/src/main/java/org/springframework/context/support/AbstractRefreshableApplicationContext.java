@@ -116,6 +116,8 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 
 
 	/**
+	 * 此实现实际刷新上下文的底层bean工厂，关闭前一个bean工厂(如果有的话)，
+	 * 并为上下文生命周期的下一个阶段初始化一个新的bean工厂。
 	 * This implementation performs an actual refresh of this context's underlying
 	 * bean factory, shutting down the previous bean factory (if any) and
 	 * initializing a fresh bean factory for the next phase of the context's lifecycle.
@@ -129,7 +131,9 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 		try {
 			DefaultListableBeanFactory beanFactory = createBeanFactory();
 			beanFactory.setSerializationId(getId());
+			//定制化bean工厂
 			customizeBeanFactory(beanFactory);
+			//加载bean定义
 			loadBeanDefinitions(beanFactory);
 			synchronized (this.beanFactoryMonitor) {
 				this.beanFactory = beanFactory;
@@ -208,6 +212,11 @@ public abstract class AbstractRefreshableApplicationContext extends AbstractAppl
 	}
 
 	/**
+	 * 自定义此上下文中使用的内部bean工厂。
+	 * 调用每个refresh()尝试。
+	 * 默认实现应用这个上下文的setallowbeandefinitionoverride“allowbeandefinitionoverride”
+	 * 和setAllowCircularReferences“allowCircularReferences”设置
+	 * (如果指定的话)。可以在子类中重写，以自定义DefaultListableBeanFactory的任何设置。
 	 * Customize the internal bean factory used by this context.
 	 * Called for each {@link #refresh()} attempt.
 	 * <p>The default implementation applies this context's

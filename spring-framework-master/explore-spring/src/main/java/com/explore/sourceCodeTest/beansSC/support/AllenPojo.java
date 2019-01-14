@@ -28,7 +28,7 @@ public class AllenPojo {
 	private Integer age;
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	public void setName(String name) {
@@ -36,7 +36,7 @@ public class AllenPojo {
 	}
 
 	public Integer getAge() {
-		return age;
+		return this.age;
 	}
 
 	public void setAge(Integer age) {

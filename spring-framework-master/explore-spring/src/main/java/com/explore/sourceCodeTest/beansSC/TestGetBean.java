@@ -16,22 +16,20 @@
 package com.explore.sourceCodeTest.beansSC;
 
 import com.explore.sourceCodeTest.beansSC.support.AllenPojo;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
- * TestGetBean
+ * TestGetBean.
  *
- * @author xiongrui
+ * @author xiong rui
  * @version 1.0.0
- * @date 2019/1/11
  **/
 public class TestGetBean {
 
 	public static void main(String[] args) {
 		ApplicationContext context=new ClassPathXmlApplicationContext("support/Bean.xml");
 		AllenPojo pojo=(AllenPojo) context.getBean("allenPojo");
-
 	}
 }
