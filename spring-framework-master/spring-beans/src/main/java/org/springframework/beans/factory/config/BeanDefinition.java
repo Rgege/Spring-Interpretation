@@ -25,7 +25,8 @@ import org.springframework.lang.Nullable;
  * A BeanDefinition describes a bean instance, which has property values,
  * constructor argument values, and further information supplied by
  * concrete implementations.
- *
+ *   这只是一个最低级的接口：主要用途是允许一个BeanFactoryPostProcessor(bean工厂后处理器)如
+ *   PropertyPlaceholderConfigurer 来对内自省以及修改属性值和其他的bean元数据
  * <p>This is just a minimal interface: The main intention is to allow a
  * {@link BeanFactoryPostProcessor} such as {@link PropertyPlaceholderConfigurer}
  * to introspect and modify property values and other bean metadata.
@@ -94,6 +95,7 @@ public interface BeanDefinition extends AttributeAccessor, BeanMetadataElement {
 	String getParentName();
 
 	/**
+	 * 指定
 	 * Specify the bean class name of this bean definition.
 	 * <p>The class name can be modified during bean factory post-processing,
 	 * typically replacing the original class name with a parsed variant of it.

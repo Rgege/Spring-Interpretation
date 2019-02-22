@@ -19,6 +19,8 @@ package org.springframework.beans.factory.config;
 import org.springframework.beans.BeansException;
 
 /**
+ * 添加销毁前回调的{@link BeanPostProcessor}的子接口。
+ * 典型的用法是对特定bean类型调用自定义销毁回调，匹配相应的初始化回调。
  * Subinterface of {@link BeanPostProcessor} that adds a before-destruction callback.
  *
  * <p>The typical usage will be to invoke custom destruction callbacks on

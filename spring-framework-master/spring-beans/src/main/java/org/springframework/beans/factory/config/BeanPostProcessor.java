@@ -20,14 +20,21 @@ import org.springframework.beans.BeansException;
 import org.springframework.lang.Nullable;
 
 /**
+ *
+ * 工厂钩子，允许自定义修改新的bean实例，
+ * 如。检查标记接口或用代理包装它们。
  * Factory hook that allows for custom modification of new bean instances,
  * e.g. checking for marker interfaces or wrapping them with proxies.
  *
+ * applicationcontext可以在bean定义中自动检测BeanPostProcessor bean，并将它们应用于随后创建的任何bean。
+ * 普通bean工厂允许对后处理器进行编程式注册，应用于通过该工厂创建的所有bean。
  * <p>ApplicationContexts can autodetect BeanPostProcessor beans in their
  * bean definitions and apply them to any beans subsequently created.
  * Plain bean factories allow for programmatic registration of post-processors,
  * applying to all beans created through this factory.
  *
+ * 通常，通过标记接口或类似的方式填充bean的后处理器将实现{@link # postprocessbeforeinitialize}，
+ * 而使用代理包装bean的后处理器通常将实现{@link # postprocessafterinitialize}。
  * <p>Typically, post-processors that populate beans via marker interfaces
  * or the like will implement {@link #postProcessBeforeInitialization},
  * while post-processors that wrap beans with proxies will normally
@@ -43,6 +50,9 @@ import org.springframework.lang.Nullable;
 public interface BeanPostProcessor {
 
 	/**
+	 * 在任何bean初始化回调(如InitializingBean的{@code afterPropertiesSet}或自定义的init-method)之前，
+	 * 将此BeanPostProcessor应用于给定的新bean实例<i>。bean已经填充了属性值。返回的bean实例可能是原始bean的包装器。
+	 * 默认实现按原样返回给定的{@code bean}。
 	 * Apply this BeanPostProcessor to the given new bean instance <i>before</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
 	 * or a custom init-method). The bean will already be populated with property values.
@@ -61,6 +71,14 @@ public interface BeanPostProcessor {
 	}
 
 	/**
+	 * 在任何bean初始化回调(如InitializingBean的{@code afterPropertiesSet}或自定义的init-method)之后，
+	 * 将此BeanPostProcessor应用于给定的新bean实例<i>。
+	 * bean已经填充了属性值。
+	 * 返回的bean实例可能是原始bean的包装器。对于FactoryBean，将为FactoryBean实例和FactoryBean创建的对象(从Spring 2.0开始)调用这个回调。
+	 * 后处理器可以通过相应的{@code bean instanceof FactoryBean}检查来决定是否应用于FactoryBean或创建的对象，或者同时应用于两者。
+	 * 与所有其他BeanPostProcessor回调相反，这个回调也将在{@link InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation}
+	 * 方法触发的短路之后调用。
+	 * 默认实现按原样返回给定的{@code bean}。
 	 * Apply this BeanPostProcessor to the given new bean instance <i>after</i> any bean
 	 * initialization callbacks (like InitializingBean's {@code afterPropertiesSet}
 	 * or a custom init-method). The bean will already be populated with property values.

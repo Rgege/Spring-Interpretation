@@ -528,18 +528,21 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 			try {
 				// Allows post-processing of the bean factory in context subclasses.
+				// 允许在上下文子类中对bean工厂进行后处理
 				postProcessBeanFactory(beanFactory);
 
 				// Invoke factory processors registered as beans in the context.
+				// 调用在上下文中注册为bean的工厂处理器。
 				invokeBeanFactoryPostProcessors(beanFactory);
 
 				// Register bean processors that intercept bean creation.
+				// 注册拦截bean创建的bean处理器。
 				registerBeanPostProcessors(beanFactory);
 
 				// Initialize message source for this context.
 				initMessageSource();
 
-				// Initialize event multicaster for this context.
+				// Initialize event multicaster(多播) for this context.
 				initApplicationEventMulticaster();
 
 				// Initialize other special beans in specific context subclasses.
@@ -549,9 +552,10 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				registerListeners();
 
 				// Instantiate all remaining (non-lazy-init) singletons.
+				// 实例化所有剩余的(非延迟初始化)单例
 				finishBeanFactoryInitialization(beanFactory);
 
-				// Last step: publish corresponding event.
+				// Last step: publish corresponding（相应的） event.
 				finishRefresh();
 			}
 
@@ -600,12 +604,13 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 		// Initialize any placeholder property sources in the context environment
 		initPropertySources();
 
+		//验证所有标记为required的属性都是可解析的
 		// Validate that all properties marked as required are resolvable
 		// see ConfigurablePropertyResolver#setRequiredProperties
 		getEnvironment().validateRequiredProperties();
 
 		// Allow for the collection of early ApplicationEvents,
-		// to be published once the multicaster is available...
+		// to be published once the multicaster is available...允许收集早期的ApplicationEvents，一旦多播机可用就可以发布…
 		this.earlyApplicationEvents = new LinkedHashSet<>();
 	}
 
@@ -698,6 +703,8 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 
 		// Detect a LoadTimeWeaver and prepare for weaving, if found in the meantime
 		// (e.g. through an @Bean method registered by ConfigurationClassPostProcessor)
+		// 检测LoadTimeWeaver并准备编织，如果同时发现的话
+		// (例如，通过ConfigurationClassPostProcessor注册的@Bean方法)
 		if (beanFactory.getTempClassLoader() == null && beanFactory.containsBean(LOAD_TIME_WEAVER_BEAN_NAME)) {
 			beanFactory.addBeanPostProcessor(new LoadTimeWeaverAwareProcessor(beanFactory));
 			beanFactory.setTempClassLoader(new ContextTypeMatchClassLoader(beanFactory.getBeanClassLoader()));

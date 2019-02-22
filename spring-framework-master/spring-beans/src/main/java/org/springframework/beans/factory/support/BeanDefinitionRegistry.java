@@ -22,14 +22,19 @@ import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.core.AliasRegistry;
 
 /**
+ * 接口，用于保存bean定义的注册中心，例如RootBeanDefinition和ChildBeanDefinition实例。
+ * 通常由内部使用AbstractBeanDefinition层次结构的BeanFactories实现。
  * Interface for registries that hold bean definitions, for example RootBeanDefinition
  * and ChildBeanDefinition instances. Typically implemented by BeanFactories that
  * internally work with the AbstractBeanDefinition hierarchy.
- *
+ * 这是spring bean factory 包下唯一的封装bean定义注册信息的接口。标准的bean工厂接口仅涵盖
+ * 对完整配置的工厂实例的访问
  * <p>This is the only interface in Spring's bean factory packages that encapsulates
  * <i>registration</i> of bean definitions. The standard BeanFactory interfaces
  * only cover access to a <i>fully configured factory instance</i>.
  *
+ *  spring的bean定义读取器希望处理这个接口的实现  在Spring core中已知的实现是
+ *  DefaultListableBeanFactory和GenericApplicationContext。
  * <p>Spring's bean definition readers expect to work on an implementation of this
  * interface. Known implementors within the Spring core are DefaultListableBeanFactory
  * and GenericApplicationContext.

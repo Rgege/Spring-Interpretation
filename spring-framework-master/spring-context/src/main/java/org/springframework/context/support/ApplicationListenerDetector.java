@@ -30,10 +30,14 @@ import org.springframework.context.event.ApplicationEventMulticaster;
 import org.springframework.util.ObjectUtils;
 
 /**
+ * 一个用来检测实现了{@code ApplicationListener}接口的bean的bean后处理器。
+ * 它获取了{@code getBeanNamesForType}无法可靠检测的bean和只对顶级bean工作的相关操作。
  * {@code BeanPostProcessor} that detects beans which implement the {@code ApplicationListener}
  * interface. This catches beans that can't reliably be detected by {@code getBeanNamesForType}
  * and related operations which only work against top-level beans.
  *
+ * 在标准的Java序列化中，这个后处理器不会作为{@code DisposableBeanAdapter}的一部分进行序列化。但是，使用其他序列化机制，
+ * {@code DisposableBeanAdapter。writeReplace}可能根本不会被使用，因此我们防御地将这个后处理器的字段状态标记为{@code transient}。
  * <p>With standard Java serialization, this post-processor won't get serialized as part of
  * {@code DisposableBeanAdapter} to begin with. However, with alternative serialization
  * mechanisms, {@code DisposableBeanAdapter.writeReplace} might not get used at all, so we
@@ -70,6 +74,7 @@ class ApplicationListenerDetector implements DestructionAwareBeanPostProcessor, 
 	public Object postProcessAfterInitialization(Object bean, String beanName) {
 		if (bean instanceof ApplicationListener) {
 			// potentially not detected as a listener by getBeanNamesForType retrieval
+			// getBeanNamesForType检索可能不会将其作为侦听器检测到
 			Boolean flag = this.singletonNames.get(beanName);
 			if (Boolean.TRUE.equals(flag)) {
 				// singleton bean (top-level or inner): register on the fly

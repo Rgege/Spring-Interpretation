@@ -196,6 +196,8 @@ public abstract class AbstractBeanDefinitionReader implements BeanDefinitionRead
 	}
 
 	/**
+	 * 从指定的资源位置加载bean定义，如果这个bean定义阅读器的ResourceLoader是一个ResourcePatternResolver，
+	 * 那么这个位置也可以是一个位置模式
 	 * Load bean definitions from the specified resource location.
 	 * <p>The location can also be a location pattern, provided that the
 	 * ResourceLoader of this bean definition reader is a ResourcePatternResolver.
