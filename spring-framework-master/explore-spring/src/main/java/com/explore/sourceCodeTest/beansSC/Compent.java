@@ -13,46 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.explore.sourceCodeTest.beansSC.support;
+package com.explore.sourceCodeTest.beansSC;
 
-
-import com.explore.sourceCodeTest.beansSC.Compent;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
- * pojo for test.
+ * Compent
  *
- * @author Rossen Stoyanchev
- * @author Rob Winch
- * @since 1.0
- */
+ * @author xiong rui
+ * @version 1.0.0
+ * @date 2019/2/22
+ **/
 @Component
-public class AllenPojo {
+public class Compent {
+	private String s;
+	private Integer i;
 
-	@Autowired
-	private Compent compent;
-
-	private String name;
-	private Integer age;
-
-	public String getName() {
-		return this.name;
+	public String getS() {
+		return s;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setS(String s) {
+		this.s = s;
 	}
 
-	public Integer getAge() {
-		return this.age;
+	public Integer getI() {
+		return i;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public void t(){
-		this.compent.setI(1111111);
+	public void setI(Integer i) {
+		System.out.println("==============================="+i);
+		this.i = i;
 	}
 }

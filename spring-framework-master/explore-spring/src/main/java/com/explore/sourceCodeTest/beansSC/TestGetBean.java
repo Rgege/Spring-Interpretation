@@ -17,7 +17,9 @@ package com.explore.sourceCodeTest.beansSC;
 
 import com.explore.sourceCodeTest.beansSC.support.AllenPojo;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -28,8 +30,20 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  **/
 public class TestGetBean {
 
+
 	public static void main(String[] args) {
 		ApplicationContext context=new ClassPathXmlApplicationContext("support/Bean.xml");
-		AllenPojo pojo=(AllenPojo) context.getBean("allenPojo");
+//		AllenPojo pojo=(AllenPojo) context.getBean("allenPojo");
+
+		ApplicationContext applicationContext=new AnnotationConfigApplicationContext();
+		((AnnotationConfigApplicationContext) applicationContext).scan("com.explore.sourceCodeTest.beansSC");
+		String[] ss=applicationContext.getBeanDefinitionNames();
+		for (String s:ss){
+			System.out.println(s);
+		}
+
+		AllenPojo pojo= applicationContext.getBean(AllenPojo.class);
+		pojo.t();
 	}
+
 }

@@ -40,6 +40,10 @@ dependencies {
 //    compile(project(":spring-webflux"))
     compile(project(":spring-webmvc"))
     compile(project(":spring-websocket"))
+    // https://mvnrepository.com/artifact/c3p0/c3p0
+    compile group: 'c3p0', name: 'c3p0', version: '0.9.1.2'
+    // https://mvnrepository.com/artifact/javax.inject/javax.inject
+    compile group: 'javax.inject', name: 'javax.inject', version: '1'
     ajc("org.aspectj:aspectjtools:${aspectjVersion}")
     rt("org.aspectj:aspectjrt:${aspectjVersion}")
     compile("org.aspectj:aspectjweaver:${aspectjVersion}")
