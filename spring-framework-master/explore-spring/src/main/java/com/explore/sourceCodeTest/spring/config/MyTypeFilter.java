@@ -2,6 +2,8 @@ package com.explore.sourceCodeTest.spring.config;
 
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.core.io.Resource;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.ClassMetadata;
@@ -10,6 +12,7 @@ import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.TypeFilter;
 
 public class MyTypeFilter implements TypeFilter {
+	private static final Logger LOGGER=LoggerFactory.getLogger(MyTypeFilter.class);
 
 	/**
 	 * metadataReader：读取到的当前正在扫描的类的信息
