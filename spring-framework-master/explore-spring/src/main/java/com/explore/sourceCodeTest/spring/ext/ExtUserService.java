@@ -5,7 +5,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 @Service
-public class UserService {
+public class ExtUserService {
 
 	@EventListener(classes={ApplicationEvent.class})
 	public void listen(ApplicationEvent event){

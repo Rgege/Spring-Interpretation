@@ -59,7 +59,7 @@ import com.explore.sourceCodeTest.spring.bean.Car;
  * @author lfy
  *
  */
-@ComponentScan("com.atguigu.bean")
+@ComponentScan("com.explore.sourceCodeTest.spring.bean")
 @Configuration
 public class MainConfigOfLifeCycle {
 

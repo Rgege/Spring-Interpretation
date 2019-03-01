@@ -56,8 +56,8 @@ import com.explore.sourceCodeTest.spring.dao.BookDao;
  *
  */
 @Configuration
-@ComponentScan({"com.atguigu.service","com.atguigu.dao",
-		"com.atguigu.controller","com.atguigu.bean"})
+@ComponentScan({"com.explore.sourceCodeTest.spring.service","com.explore.sourceCodeTest.spring.dao",
+		"com.explore.sourceCodeTest.spring.controller","com.explore.sourceCodeTest.spring.bean"})
 public class MainConifgOfAutowired {
 
 	@Primary

@@ -106,7 +106,7 @@ import com.explore.sourceCodeTest.spring.bean.Blue;
  *
  *
  */
-@ComponentScan("com.atguigu.ext")
+@ComponentScan("com.explore.sourceCodeTest.spring.ext")
 @Configuration
 public class ExtConfig {
 

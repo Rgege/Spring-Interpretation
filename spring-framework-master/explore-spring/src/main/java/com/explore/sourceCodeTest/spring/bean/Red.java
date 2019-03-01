@@ -16,21 +16,21 @@ public class Red implements ApplicationContextAware,BeanNameAware,EmbeddedValueR
 	@Override
 	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
 		// TODO Auto-generated method stub
-		System.out.println("�����ioc��"+applicationContext);
+		System.out.println("传入的ioc："+applicationContext);
 		this.applicationContext = applicationContext;
 	}
 
 	@Override
 	public void setBeanName(String name) {
 		// TODO Auto-generated method stub
-		System.out.println("��ǰbean�����֣�"+name);
+		System.out.println("当前bean的名字："+name);
 	}
 
 	@Override
 	public void setEmbeddedValueResolver(StringValueResolver resolver) {
 		// TODO Auto-generated method stub
-		String resolveStringValue = resolver.resolveStringValue("��� ${os.name} ���� #{20*18}");
-		System.out.println("�������ַ�����"+resolveStringValue);
+		String resolveStringValue = resolver.resolveStringValue("你好 ${os.name} 我是 #{20*18}");
+		System.out.println("解析的字符串："+resolveStringValue);
 	}
 
 
