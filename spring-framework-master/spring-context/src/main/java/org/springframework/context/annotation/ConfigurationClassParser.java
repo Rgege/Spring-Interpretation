@@ -249,7 +249,7 @@ class ConfigurationClassParser {
 	/**
 	 * Apply processing and build a complete {@link ConfigurationClass} by reading the
 	 * annotations, members and methods from the source class. This method can be called
-	 * multiple times as relevant sources are discovered.
+	 * multiple times as relevant sources are discovered.通过从源类中读取注释、成员和方法，应用处理并构建一个完整的{@link ConfigurationClass}。在发现相关源时，可以多次调用此方法。
 	 * @param configClass the configuration class being build
 	 * @param sourceClass a source class
 	 * @return the superclass, or {@code null} if none found or previously processed

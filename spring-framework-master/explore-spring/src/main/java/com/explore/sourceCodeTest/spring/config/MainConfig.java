@@ -14,11 +14,11 @@ import com.explore.sourceCodeTest.spring.bean.Person;
 
 @ComponentScans(
 		value = {
-				@ComponentScan(value="com.explore.sourceCodeTest.spring",includeFilters = {
-/*						@Filter(type=FilterType.ANNOTATION,classes={Controller.class}),
-						@Filter(type=FilterType.ASSIGNABLE_TYPE,classes={BookService.class}),*/
+				@ComponentScan(value="com.explore.sourceCodeTest.spring"/*,includeFilters = {
+						@Filter(type=FilterType.ANNOTATION,classes={Controller.class}),
+						@Filter(type=FilterType.ASSIGNABLE_TYPE,classes={BookService.class}),
 						@Filter(type=FilterType.CUSTOM,classes={MyTypeFilter.class})
-				},useDefaultFilters = false)
+				},useDefaultFilters = false*/)
 		}
 )
 //@ComponentScan  value:指定要扫描的包
