@@ -23,8 +23,12 @@ public class IOCTest_Tx {
 				new AnnotationConfigApplicationContext(TxConfig.class);
 	
 		UserService userService = applicationContext.getBean(UserService.class);
-		
-		userService.insertUser();
+
+		try {
+			userService.function1();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		applicationContext.close();
 	}
 
