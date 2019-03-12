@@ -18,7 +18,6 @@ pom.xml
 activemq-data/
 
 classes/
-/build
 buildSrc/build
 /spring-*/build
 /explore-spring/build
