@@ -51,6 +51,7 @@ dependencies {
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.38'
 
+    provided group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
     ajc("org.aspectj:aspectjtools:${aspectjVersion}")
     rt("org.aspectj:aspectjrt:${aspectjVersion}")
     compile("org.aspectj:aspectjweaver:${aspectjVersion}")
