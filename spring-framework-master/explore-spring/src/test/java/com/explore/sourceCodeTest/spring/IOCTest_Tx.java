@@ -1,5 +1,8 @@
 package com.explore.sourceCodeTest.spring;
 
+import com.explore.sourceCodeTest.spring.tx.propagation.service.TXService;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -16,20 +19,34 @@ import com.explore.sourceCodeTest.spring.tx.TxConfig;
 import com.explore.sourceCodeTest.spring.tx.UserService;
 
 public class IOCTest_Tx {
+
+	private AnnotationConfigApplicationContext applicationContext;
+
+	@Before
+	public void before(){
+		this.applicationContext = new AnnotationConfigApplicationContext(TxConfig.class);
+	}
 	
 	@Test
 	public void test01(){
-		AnnotationConfigApplicationContext applicationContext = 
-				new AnnotationConfigApplicationContext(TxConfig.class);
-	
 		UserService userService = applicationContext.getBean(UserService.class);
-
 		try {
 			userService.function1();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		applicationContext.close();
 	}
 
+	@Test
+	public void testPropagation(){
+		TXService service= applicationContext.getBean(TXService.class);
+
+		service.notransaction_exception_required_required();
+
+	}
+
+	@After
+	public void after(){
+		this.applicationContext.close();
+	}
 }

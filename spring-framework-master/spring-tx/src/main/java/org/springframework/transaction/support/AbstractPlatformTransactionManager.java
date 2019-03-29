@@ -144,6 +144,8 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	 * <p>Note that transaction synchronization isn't supported for
 	 * multiple concurrent transactions by different transaction managers.
 	 * Only one transaction manager is allowed to activate it at any time.
+	 * 设置此事务管理器何时应激活线程绑定事务同步支持。默认设置是“总是”。
+	 * 注意，不同的事务管理器不支持多个并发事务的事务同步。任何时候只允许一个事务管理器激活它。
 	 * @see #SYNCHRONIZATION_ALWAYS
 	 * @see #SYNCHRONIZATION_ON_ACTUAL_TRANSACTION
 	 * @see #SYNCHRONIZATION_NEVER

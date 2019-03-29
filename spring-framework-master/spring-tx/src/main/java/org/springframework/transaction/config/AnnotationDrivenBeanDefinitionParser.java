@@ -125,22 +125,24 @@ class AnnotationDrivenBeanDefinitionParser implements BeanDefinitionParser {
 			if (!parserContext.getRegistry().containsBeanDefinition(txAdvisorBeanName)) {
 				Object eleSource = parserContext.extractSource(element);
 
-				// Create the TransactionAttributeSource definition.
+				// Create the TransactionAttributeSource definition.创建 TransactionAttributeSource（事物属性源） bean定义
 				RootBeanDefinition sourceDef = new RootBeanDefinition(
 						"org.springframework.transaction.annotation.AnnotationTransactionAttributeSource");
 				sourceDef.setSource(eleSource);
 				sourceDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
+				//注册并使用spring中定义的规则生产beanName
 				String sourceName = parserContext.getReaderContext().registerWithGeneratedName(sourceDef);
 
-				// Create the TransactionInterceptor definition.
+				// Create the TransactionInterceptor definition.创建事物拦截器bean定义
 				RootBeanDefinition interceptorDef = new RootBeanDefinition(TransactionInterceptor.class);
 				interceptorDef.setSource(eleSource);
 				interceptorDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);
 				registerTransactionManager(element, interceptorDef);
 				interceptorDef.getPropertyValues().add("transactionAttributeSource", new RuntimeBeanReference(sourceName));
+				//注册并使用spring中定义的规则生产beanName
 				String interceptorName = parserContext.getReaderContext().registerWithGeneratedName(interceptorDef);
 
-				// Create the TransactionAttributeSourceAdvisor definition.
+				// Create the TransactionAttributeSourceAdvisor definition.创建事物属性源顾问
 				RootBeanDefinition advisorDef = new RootBeanDefinition(BeanFactoryTransactionAttributeSourceAdvisor.class);
 				advisorDef.setSource(eleSource);
 				advisorDef.setRole(BeanDefinition.ROLE_INFRASTRUCTURE);

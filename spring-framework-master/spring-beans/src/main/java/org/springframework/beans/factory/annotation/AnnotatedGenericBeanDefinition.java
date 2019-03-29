@@ -24,8 +24,8 @@ import org.springframework.lang.Nullable;
 import org.springframework.util.Assert;
 
 /**
- * Extension of the {@link org.springframework.beans.factory.support.GenericBeanDefinition}
- * class, adding support for annotation metadata exposed through the
+ * Extension（延伸） of the {@link org.springframework.beans.factory.support.GenericBeanDefinition}
+ * class, adding support for annotation metadata exposed(揭露 揭发 使曝光 显示) through the
  * {@link AnnotatedBeanDefinition} interface.
  *
  * <p>This GenericBeanDefinition variant is mainly useful for testing code that expects
