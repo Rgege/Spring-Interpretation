@@ -52,7 +52,7 @@ import com.explore.sourceCodeTest.spring.dao.BookDao;
  * 			ApplicationContextAware==》ApplicationContextAwareProcessor；
  *
  *
- * @author lfy
+ *
  *
  */
 @Configuration
