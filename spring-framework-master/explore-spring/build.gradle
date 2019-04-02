@@ -40,9 +40,12 @@ dependencies {
 //    compile(project(":spring-webflux"))
     compile(project(":spring-webmvc"))
     compile(project(":spring-websocket"))
-    compile group: 'c3p0', name: 'c3p0', version: '0.9.5.2'
-    // for c3p0
-    compile group: 'com.mchange', name: 'mchange-commons-java', version: '0.2.11'
+    // https://mvnrepository.com/artifact/com.mchange/c3p0
+    compile group: 'com.mchange', name: 'c3p0', version: '0.9.5.2'
+
+//    compile group: 'c3p0', name: 'c3p0', version: '0.9.5.2'
+//    // for c3p0
+//    compile group: 'com.mchange', name: 'mchange-commons-java', version: '0.2.11'
 
     compile group: 'javax.inject', name: 'javax.inject', version: '1'
 //    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
