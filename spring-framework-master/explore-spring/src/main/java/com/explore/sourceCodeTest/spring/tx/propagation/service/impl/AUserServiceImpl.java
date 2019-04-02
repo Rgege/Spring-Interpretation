@@ -1,5 +1,6 @@
 package com.explore.sourceCodeTest.spring.tx.propagation.service.impl;
 
+import com.explore.sourceCodeTest.spring.tx.mapper.AMapper;
 import com.explore.sourceCodeTest.spring.tx.propagation.UserA;
 import com.explore.sourceCodeTest.spring.tx.propagation.dao.ADao;
 import com.explore.sourceCodeTest.spring.tx.propagation.service.AUserService;
@@ -14,7 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class AUserServiceImpl implements AUserService {
 	private static final Logger LOGGER=LoggerFactory.getLogger(AUserServiceImpl.class);
 	@Autowired
-	private ADao aDao;
+	private AMapper aDao;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)

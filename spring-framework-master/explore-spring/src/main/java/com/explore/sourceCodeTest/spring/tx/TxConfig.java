@@ -4,11 +4,15 @@ import java.beans.PropertyVetoException;
 
 import javax.sql.DataSource;
 
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.aop.aspectj.annotation.AnnotationAwareAspectJAutoProxyCreator;
 import org.springframework.aop.framework.autoproxy.InfrastructureAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -76,16 +80,39 @@ public class TxConfig {
 //		dataSource.setPassword("123456");
 		dataSource.setDriverClass("com.mysql.jdbc.Driver");
 		dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/test");
+		setC3P0PoolProperties(dataSource);
 		return dataSource;
 	}
 
-	//
-	@Bean
-	public JdbcTemplate jdbcTemplate() throws Exception{
-		//Spring对@Configuration类会特殊处理；给容器中加组件的方法，多次调用都只是从容器中找组件
-		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
-		return jdbcTemplate;
+	@Bean("sqlSessionFactory")
+	public SqlSessionFactory sqlSessionFactory(){
+		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+		sqlSessionFactoryBean.setTypeAliasesPackage("com.explore.sourceCodeTest.spring.tx.*");
+		try {
+			sqlSessionFactoryBean.setDataSource(dataSource());
+			PathMatchingResourcePatternResolver resolver=new PathMatchingResourcePatternResolver();
+//			sqlSessionFactoryBean.setConfigLocation(resolver.getResources("classpath:config/mybatis-config.xml")[0]);
+			sqlSessionFactoryBean.setMapperLocations(resolver.getResources("classpath*:mapper/*.xml"));
+			return sqlSessionFactoryBean.getObject();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
+	@Bean
+	public MapperScannerConfigurer mapperScannerConfigurer(){
+		MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
+		mapperScannerConfigurer.setBasePackage("com.explore.sourceCodeTest.spring.tx.mapper");
+		mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
+		return mapperScannerConfigurer;
+
+	}
+//	@Bean
+//	public JdbcTemplate jdbcTemplate() throws Exception{
+//		//Spring对@Configuration类会特殊处理；给容器中加组件的方法，多次调用都只是从容器中找组件
+//		JdbcTemplate jdbcTemplate = new JdbcTemplate(dataSource());
+//		return jdbcTemplate;
+//	}
 
 	//注册事务管理器在容器中
 	@Bean
@@ -93,5 +120,21 @@ public class TxConfig {
 		return new DataSourceTransactionManager(dataSource());
 	}
 
+	private void setC3P0PoolProperties(ComboPooledDataSource comboPooledDataSource){
+		comboPooledDataSource.setMaxPoolSize(20);
+		comboPooledDataSource.setMinPoolSize(2);
+		comboPooledDataSource.setInitialPoolSize(2);
+		comboPooledDataSource.setMaxIdleTime(60);
+		comboPooledDataSource.setCheckoutTimeout(5000);
+		comboPooledDataSource.setAcquireIncrement(2);
+		comboPooledDataSource.setAcquireRetryAttempts(0);
+		comboPooledDataSource.setAcquireRetryDelay(1000);
+//		comboPooledDataSource.setAutoCommitOnClose(false);
+		comboPooledDataSource.setAutomaticTestTable("C3P0_AUTO_TEST");
+		comboPooledDataSource.setBreakAfterAcquireFailure(false);
+		comboPooledDataSource.setIdleConnectionTestPeriod(60);
+		comboPooledDataSource.setTestConnectionOnCheckin(false);
+		comboPooledDataSource.setTestConnectionOnCheckout(false);
+	}
 
 }

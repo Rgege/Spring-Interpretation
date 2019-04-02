@@ -238,7 +238,7 @@ public abstract class AbstractBeanFactory extends FactoryBeanRegistrySupport imp
 	@SuppressWarnings("unchecked")
 	protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,
 			@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {
-
+		//解析bean名称
 		final String beanName = transformedBeanName(name);
 		Object bean;
 

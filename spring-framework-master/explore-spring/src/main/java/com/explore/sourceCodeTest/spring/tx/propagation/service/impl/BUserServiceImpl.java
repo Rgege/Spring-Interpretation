@@ -1,5 +1,6 @@
 package com.explore.sourceCodeTest.spring.tx.propagation.service.impl;
 
+import com.explore.sourceCodeTest.spring.tx.mapper.BMapper;
 import com.explore.sourceCodeTest.spring.tx.propagation.UserB;
 import com.explore.sourceCodeTest.spring.tx.propagation.dao.BDao;
 import com.explore.sourceCodeTest.spring.tx.propagation.service.BUserService;
@@ -15,7 +16,7 @@ public class BUserServiceImpl implements BUserService {
 	private static final Logger LOGGER=LoggerFactory.getLogger(BUserServiceImpl.class);
 
 	@Autowired
-	private BDao bDao;
+	private BMapper bDao;
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
