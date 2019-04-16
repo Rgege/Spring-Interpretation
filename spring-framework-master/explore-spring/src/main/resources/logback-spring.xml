@@ -8,16 +8,16 @@
 		</encoder>
 	</appender>
 
-	<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">
-		<discardingThreshold>0</discardingThreshold>
-		<queueSize>10000</queueSize>
-	</appender>
+	<!--<appender name="ASYNC" class="ch.qos.logback.classic.AsyncAppender">-->
+		<!--<discardingThreshold>0</discardingThreshold>-->
+		<!--<queueSize>10000</queueSize>-->
+	<!--</appender>-->
 
 
 	<logger name="org.springframework" additivity="false">
 		<level value="DEBUG" />
 		<appender-ref ref="STDOUT" />
-		<appender-ref ref="ASYNC" />
+		<!--<appender-ref ref="ASYNC" />-->
 	</logger>
 
 	<logger name="org.apache.ibatis" level="DEBUG" />
@@ -30,7 +30,7 @@
 	<logger name="com.explore.sourceCodeTest" additivity="false">
 		<level value="DEBUG" />
 		<appender-ref ref="STDOUT" />
-		<appender-ref ref="ASYNC" />
+		<!--<appender-ref ref="ASYNC" />-->
 	</logger>
 
 	<!--<logger name="com.explore.sourceCodeTest.spring" additivity="false">-->
@@ -41,12 +41,12 @@
 
 	<logger name="com" additivity="false" level="DEBUG">
 		<appender-ref ref="STDOUT" />
-		<appender-ref ref="ASYNC" />
+		<!--<appender-ref ref="ASYNC" />-->
 	</logger>
 
 	<root level="${log.root.level}">
 		<appender-ref ref="STDOUT" />
-		<appender-ref ref="ASYNC" />
+		<!--<appender-ref ref="ASYNC" />-->
 	</root>
 
 	<!--<logger name="org.apache.ibatis" level="WARN" />-->

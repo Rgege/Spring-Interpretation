@@ -9,4 +9,6 @@ public interface AUserService {
 	void addRequiresNew(UserA user);
 
 	void addNested(UserA user);
+
+	void insert(UserA user);
 }

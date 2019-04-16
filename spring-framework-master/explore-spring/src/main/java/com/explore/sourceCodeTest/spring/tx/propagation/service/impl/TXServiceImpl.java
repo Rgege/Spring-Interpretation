@@ -239,4 +239,13 @@ public class TXServiceImpl implements TXService {
 			LOGGER.info("=====================被调用的方法抛出的异常 被try-catch了===============================");
 		}
 	}
+
+	@Override
+	public void test() {
+		UserA userA=new UserA();
+		for (int i = 0; i <1000 ; i++) {
+			userA.setName("HAHAH"+i);
+			aUserService.insert(userA);
+		}
+	}
 }

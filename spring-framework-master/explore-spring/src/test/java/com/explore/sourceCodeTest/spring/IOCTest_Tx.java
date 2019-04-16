@@ -1,5 +1,6 @@
 package com.explore.sourceCodeTest.spring;
 
+import com.explore.sourceCodeTest.spring.tx.propagation.service.AUserService;
 import com.explore.sourceCodeTest.spring.tx.propagation.service.TXService;
 import org.junit.After;
 import org.junit.Before;
@@ -39,10 +40,17 @@ public class IOCTest_Tx {
 
 	@Test
 	public void testPropagation(){
-		TXService service= applicationContext.getBean(TXService.class);
+		TXService txService= applicationContext.getBean(TXService.class);
 
-		service.notransaction_exception_required_required();
+//		txService.notransaction_exception_required_required();
 
+		txService.notransaction_required_required_exception();
+	}
+
+	@Test
+	public void test(){
+		TXService txService=applicationContext.getBean(TXService.class);
+		txService.test();
 	}
 
 	@After

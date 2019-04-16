@@ -37,4 +37,12 @@ public class AUserServiceImpl implements AUserService {
 		LOGGER.info("===================AUser userName:"+user.getName());
 		aDao.insert(user);
 	}
+
+
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void insert(UserA user) {
+		aDao.insert(user);
+	}
 }

@@ -63,6 +63,8 @@ public interface TXService {
 
 	//外围方法开启事务 被调用的方法发生异常 不过异常被外围方法catch了
 	void transaction_nested_nested_exception_try();
+
+	void test();
 }
 
 
