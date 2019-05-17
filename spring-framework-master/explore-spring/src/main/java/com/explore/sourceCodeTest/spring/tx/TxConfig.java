@@ -84,6 +84,18 @@ public class TxConfig {
 		return dataSource;
 	}
 
+	//数据源
+//	@Bean
+//	public DataSource dataSource2() throws Exception{
+//		ComboPooledDataSource dataSource = new ComboPooledDataSource();
+//		dataSource.setUser("root");
+////		dataSource.setPassword("123456");
+//		dataSource.setDriverClass("com.mysql.jdbc.Driver");
+//		dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/test2");
+//		setC3P0PoolProperties(dataSource);
+//		return dataSource;
+//	}
+
 	@Bean("sqlSessionFactory")
 	public SqlSessionFactory sqlSessionFactory(){
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
@@ -119,6 +131,11 @@ public class TxConfig {
 	public PlatformTransactionManager transactionManager() throws Exception{
 		return new DataSourceTransactionManager(dataSource());
 	}
+
+//	@Bean
+//	public PlatformTransactionManager transactionManager2() throws Exception{
+//		return new DataSourceTransactionManager(dataSource2());
+//	}
 
 	private void setC3P0PoolProperties(ComboPooledDataSource comboPooledDataSource){
 		comboPooledDataSource.setMaxPoolSize(20);

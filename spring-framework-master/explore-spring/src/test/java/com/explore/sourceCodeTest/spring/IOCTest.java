@@ -2,6 +2,7 @@ package com.explore.sourceCodeTest.spring;
 
 import java.util.Map;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.ConfigurableEnvironment;
@@ -12,8 +13,12 @@ import com.explore.sourceCodeTest.spring.config.MainConfig;
 import com.explore.sourceCodeTest.spring.config.MainConfig2;
 
 public class IOCTest {
-	AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
+	private AnnotationConfigApplicationContext applicationContext ;
 
+	@Before
+	public void prepareTest(){
+		applicationContext = new AnnotationConfigApplicationContext(MainConfig2.class);
+	}
 
 	@Test
 	public void testImport(){

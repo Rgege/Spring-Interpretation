@@ -41,8 +41,9 @@ public class AUserServiceImpl implements AUserService {
 
 
 	@Override
-	@Transactional(propagation = Propagation.REQUIRED)
+	@Transactional(propagation = Propagation.REQUIRED,readOnly = true)
 	public void insert(UserA user) {
 		aDao.insert(user);
+//		throw new RuntimeException("=========================================抛异常");
 	}
 }

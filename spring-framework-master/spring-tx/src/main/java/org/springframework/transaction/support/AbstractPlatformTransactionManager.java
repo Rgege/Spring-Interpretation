@@ -560,8 +560,8 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 
 
 	/**
-	 * Suspend the given transaction. Suspends transaction synchronization first,
-	 * then delegates to the {@code doSuspend} template method.
+	 * Suspend the given transaction. Suspends transaction synchronization first,暂停给定的事务。首先暂停事务同步，
+	 * then delegates to the {@code doSuspend} template method.然后委托给{@code doSuspend}模板方法。
 	 * @param transaction the current transaction object
 	 * (or {@code null} to just suspend active synchronizations, if any)
 	 * @return an object that holds suspended resources

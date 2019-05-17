@@ -19,7 +19,7 @@ package org.springframework.context.annotation;
 import org.springframework.beans.factory.config.BeanDefinition;
 
 /**
- * Strategy interface for resolving the scope of bean definitions.
+ * Strategy（策略） interface for resolving（解析） the scope of bean definitions.
  *
  * @author Mark Fisher
  * @since 2.5

@@ -27,11 +27,16 @@ import org.springframework.core.io.ProtocolResolver;
 import org.springframework.lang.Nullable;
 
 /**
+ *
+ *
+ * 大多数(如果不是所有)应用程序上下文都要实现SPI接口。除应用程序上下文客户端方法外，还提供用于配置应用程序上下文的工具
+ * {@link org.springframework.context.ApplicationContext}接口。
  * SPI interface to be implemented by most if not all application contexts.
  * Provides facilities to configure an application context in addition
  * to the application context client methods in the
  * {@link org.springframework.context.ApplicationContext} interface.
  *
+ * 这里封装了配置和生命周期方法，以避免对ApplicationContext客户机代码造成明显影响。目前的方法只能在启动和关闭代码中使用。
  * <p>Configuration and lifecycle methods are encapsulated here to avoid
  * making them obvious to ApplicationContext client code. The present
  * methods should only be used by startup and shutdown code.

@@ -155,6 +155,7 @@ public class MockServletContext implements ServletContext {
 		this("", null);
 	}
 
+
 	/**
 	 * Create a new {@code MockServletContext}, using a {@link DefaultResourceLoader}.
 	 * @param resourceBasePath the root directory of the WAR (should not end with a slash)
@@ -730,4 +731,41 @@ public class MockServletContext implements ServletContext {
 		throw new UnsupportedOperationException();
 	}
 
+
+	//=============================================================================
+
+	@Override
+	public ServletRegistration.Dynamic addJspFile(String jspName, String jspFile) {
+		return null;
+	}
+
+	@Override
+	public int getSessionTimeout() {
+		return 0;
+	}
+
+	@Override
+	public void setSessionTimeout(int sessionTimeout) {
+
+	}
+
+	@Override
+	public String getRequestCharacterEncoding() {
+		return null;
+	}
+
+	@Override
+	public void setRequestCharacterEncoding(String encoding) {
+
+	}
+
+	@Override
+	public String getResponseCharacterEncoding() {
+		return null;
+	}
+
+	@Override
+	public void setResponseCharacterEncoding(String encoding) {
+
+	}
 }

@@ -19,6 +19,9 @@ import com.explore.sourceCodeTest.spring.service.BookService;
 import com.explore.sourceCodeTest.spring.tx.TxConfig;
 import com.explore.sourceCodeTest.spring.tx.UserService;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class IOCTest_Tx {
 
 	private AnnotationConfigApplicationContext applicationContext;
@@ -43,7 +46,6 @@ public class IOCTest_Tx {
 		TXService txService= applicationContext.getBean(TXService.class);
 
 //		txService.notransaction_exception_required_required();
-
 		txService.notransaction_required_required_exception();
 	}
 
@@ -51,6 +53,9 @@ public class IOCTest_Tx {
 	public void test(){
 		TXService txService=applicationContext.getBean(TXService.class);
 		txService.test();
+		Map<String,Object> map=new HashMap<String,Object>();
+		map.put("qq",123456);
+		map.get("qq");
 	}
 
 	@After

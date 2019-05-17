@@ -243,9 +243,11 @@ public class TXServiceImpl implements TXService {
 	@Override
 	public void test() {
 		UserA userA=new UserA();
-		for (int i = 0; i <1000 ; i++) {
-			userA.setName("HAHAH"+i);
-			aUserService.insert(userA);
-		}
+//		for (int i = 0; i <1000 ; i++) {
+//			userA.setName("HAHAH"+i);
+//			aUserService.insert(userA);
+//		}
+		userA.setName("HAHAH");
+		aUserService.insert(userA);
 	}
 }
