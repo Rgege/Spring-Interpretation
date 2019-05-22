@@ -34,6 +34,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.StringTokenizer;
 
+import core.CompilerOptionsNew;
 import org.apache.jasper.JasperException;
 import org.apache.juli.logging.Log;
 import org.apache.juli.logging.LogFactory;
@@ -317,10 +318,10 @@ public class JDTCompiler extends org.apache.jasper.compiler.Compiler {
             // Support old format that was used in EA implementation as well
             } else if(opt.equals("9") || opt.equals("1.9")) {
                 settings.put(CompilerOptions.OPTION_Source,
-                             CompilerOptions.VERSION_9);
+                        CompilerOptionsNew.VERSION_9);
             } else if(opt.equals("10")) {
                 settings.put(CompilerOptions.OPTION_Source,
-                             CompilerOptions.VERSION_10);
+                        CompilerOptionsNew.VERSION_10);
             } else {
                 log.warn("Unknown source VM " + opt + " ignored.");
                 settings.put(CompilerOptions.OPTION_Source,
@@ -371,14 +372,14 @@ public class JDTCompiler extends org.apache.jasper.compiler.Compiler {
             // Support old format that was used in EA implementation as well
             } else if(opt.equals("9") || opt.equals("1.9")) {
                 settings.put(CompilerOptions.OPTION_TargetPlatform,
-                             CompilerOptions.VERSION_9);
+                        CompilerOptionsNew.VERSION_9);
                 settings.put(CompilerOptions.OPTION_Compliance,
-                        CompilerOptions.VERSION_9);
+                        CompilerOptionsNew.VERSION_9);
             } else if(opt.equals("10")) {
                 settings.put(CompilerOptions.OPTION_TargetPlatform,
-                        CompilerOptions.VERSION_10);
+                        CompilerOptionsNew.VERSION_10);
                 settings.put(CompilerOptions.OPTION_Compliance,
-                        CompilerOptions.VERSION_10);
+                        CompilerOptionsNew.VERSION_10);
             } else {
                 log.warn("Unknown target VM " + opt + " ignored.");
                 settings.put(CompilerOptions.OPTION_TargetPlatform,
