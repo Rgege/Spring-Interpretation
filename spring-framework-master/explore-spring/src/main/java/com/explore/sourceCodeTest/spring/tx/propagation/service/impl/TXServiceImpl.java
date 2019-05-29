@@ -1,5 +1,7 @@
 package com.explore.sourceCodeTest.spring.tx.propagation.service.impl;
 
+import com.explore.sourceCodeTest.spring.tx.mapper.AMapper;
+import com.explore.sourceCodeTest.spring.tx.mapper.BMapper;
 import com.explore.sourceCodeTest.spring.tx.propagation.UserA;
 import com.explore.sourceCodeTest.spring.tx.propagation.UserB;
 import com.explore.sourceCodeTest.spring.tx.propagation.service.AUserService;
@@ -20,6 +22,11 @@ public class TXServiceImpl implements TXService {
 	private AUserService aUserService;
 	@Autowired
 	private BUserService bUserService;
+
+	@Autowired
+	private AMapper aDao;
+	@Autowired
+	private BMapper bDao;
 
 	@Override
 	public void notransaction_exception_required_required() {
@@ -241,13 +248,33 @@ public class TXServiceImpl implements TXService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public void test() {
 		UserA userA=new UserA();
+		UserB userB=new UserB();
+
 //		for (int i = 0; i <1000 ; i++) {
 //			userA.setName("HAHAH"+i);
 //			aUserService.insert(userA);
 //		}
-		userA.setName("HAHAH");
-		aUserService.insert(userA);
+		userA.setName("AAAAAA20190529");
+		userB.setName("BBBBBB20190529");
+//		aUserService.insert(userA);
+		aDao.insert(userA);
+		bDao.insert(userB);
+	}
+
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void test2() {
+		LOGGER.info("====================transaction_required_required_exception==================================");
+		UserA aUser = new UserA();
+		aUser.setName("TRRE-AAAAAA20190529");
+		aUserService.addRequired(aUser);
+
+		UserB bUser = new UserB();
+		bUser.setName("TRRE-BBBBBB20190529");
+		bUserService.addRequired(bUser);
 	}
 }

@@ -65,6 +65,8 @@ public interface TXService {
 	void transaction_nested_nested_exception_try();
 
 	void test();
+
+	void test2();
 }
 
 

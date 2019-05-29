@@ -1047,13 +1047,13 @@ public abstract class AbstractPlatformTransactionManager implements PlatformTran
 	protected abstract Object doGetTransaction() throws TransactionException;
 
 	/**
-	 * Check if the given transaction object indicates an existing transaction
+	 * Check if the given transaction object indicates(指示) an existing transaction
 	 * (that is, a transaction which has already started).
 	 * <p>The result will be evaluated according to the specified propagation
 	 * behavior for the new transaction. An existing transaction might get
 	 * suspended (in case of PROPAGATION_REQUIRES_NEW), or the new transaction
-	 * might participate in the existing one (in case of PROPAGATION_REQUIRED).
-	 * <p>The default implementation returns {@code false}, assuming that
+	 * might participate in(参加、分享) the existing one (in case of PROPAGATION_REQUIRED).
+	 * <p>The default implementation returns {@code false}, assuming that(假定...)
 	 * participating in existing transactions is generally not supported.
 	 * Subclasses are of course encouraged to provide such support.
 	 * @param transaction transaction object returned by doGetTransaction

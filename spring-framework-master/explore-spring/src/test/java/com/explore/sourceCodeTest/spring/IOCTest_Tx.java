@@ -52,10 +52,7 @@ public class IOCTest_Tx {
 	@Test
 	public void test(){
 		TXService txService=applicationContext.getBean(TXService.class);
-		txService.test();
-		Map<String,Object> map=new HashMap<String,Object>();
-		map.put("qq",123456);
-		map.get("qq");
+		txService.test2();
 	}
 
 	@After
